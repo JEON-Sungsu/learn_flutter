@@ -15,43 +15,20 @@ class _PictureListSkeletonState extends State<PictureListSkeleton> {
       baseColor: Colors.grey.shade300,
       highlightColor: Colors.grey.shade100,
       enabled: true,
-      child: SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            children: List.generate(20, (index) {
-              return Container(
-                margin: const EdgeInsets.only(bottom: 12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: 170,
-                      height: 170,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Colors.grey
-                      ),
-                    ),
-                    const SizedBox(
-                      width:12,
-                    ),
-                    Container(
-                      width: 170,
-                      height: 170,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Colors.grey
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            })
-          ),
-        ),
-      ),
+      child: GridView.count(
+        crossAxisCount: 2,
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+        padding: const EdgeInsets.all(24),
+        children: List.generate(20, (index) {
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Colors.grey
+            ),
+          );
+        }),
+      )
     );
   }
 }
