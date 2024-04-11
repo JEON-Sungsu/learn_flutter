@@ -26,6 +26,11 @@ class PictureViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  ImagePicture getPictureInfo(num id) {
+    final info = _pictures.where((picture) => picture.id == id).toList();
+    return info[0];
+  }
+
   PictureViewModel({
     required PictureRepository repository,
   }) : _repository = repository;

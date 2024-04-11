@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:learn_flutter/04_picture_search/presentation/component/picture_list_skeleton.dart';
+import 'package:learn_flutter/04_picture_search/presentation/screen/picture_detail_screen.dart';
 import 'package:learn_flutter/04_picture_search/presentation/view_model/picture_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -62,26 +64,43 @@ class _PictureListScreenState extends State<PictureListScreen> {
               child: viewModel.isLoading
                   ? const PictureListSkeleton()
                   : viewModel.isEmpty
-                      ? const Center(
-                          child: Text(
-                            '검색결과가 없습니다.',
-                            style: TextStyle(fontSize: 18),
+                  ? const Center(
+                child: Text(
+                  '검색결과가 없습니다.',
+                  style: TextStyle(fontSize: 18),
+                ),
+              )
+                  : GridView.count(
+                padding: const EdgeInsets.all(24),
+                crossAxisCount: 2,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+                children: viewModel.pictures
+                    .map((e) =>
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  final pictureInfo = viewModel.getPictureInfo(e.id);
+                                  return PictureDetailScreen(picture: pictureInfo);
+                                }
+                              ),
+                            );
+                          },
+                          child: Hero(
+                            tag: e.tags,
+                            child: Image.network(
+                              e.url,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        )
-                      : GridView.count(
-                          padding: const EdgeInsets.all(24),
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 12,
-                          mainAxisSpacing: 12,
-                          children: viewModel.pictures
-                              .map((e) => ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Image.network(
-                                    e.url,
-                                    fit: BoxFit.cover,
-                                  )))
-                              .toList(),
-                        ),
+                        )))
+                    .toList(),
+              ),
             ),
           ],
         ),

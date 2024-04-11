@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:learn_flutter/01_happy_birthday/happy_birthday_list.dart';
 import 'package:learn_flutter/01_happy_birthday/model/user_card_info.dart';
@@ -7,7 +6,9 @@ import 'package:learn_flutter/01_happy_birthday/pages/user_card.dart';
 import 'package:learn_flutter/02_youtuebe_clone/presentation/youtube_main.dart';
 import 'package:learn_flutter/03_starbucks_clone/presentation/starbucks_main_screen.dart';
 import 'package:learn_flutter/04_picture_search/data/data_source/picture_api.dart';
+import 'package:learn_flutter/04_picture_search/data/model/picture.dart';
 import 'package:learn_flutter/04_picture_search/data/repository/picture_repository_impl.dart';
+import 'package:learn_flutter/04_picture_search/presentation/screen/picture_detail_screen.dart';
 import 'package:learn_flutter/04_picture_search/presentation/screen/picture_list_screen.dart';
 import 'package:learn_flutter/04_picture_search/presentation/view_model/picture_view_model.dart';
 import 'package:learn_flutter/main.dart';
@@ -60,6 +61,7 @@ final router = GoRouter(
       },
     ),
 
+    //04_PictureSearch
     GoRoute(
       path: '/pictureSearch',
       builder: (context, state) {
