@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/04_picture_search/presentation/component/picture_list_skeleton.dart';
 import 'package:learn_flutter/04_picture_search/presentation/view_model/picture_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -34,11 +35,18 @@ class _PictureListScreenState extends State<PictureListScreen> {
               padding: const EdgeInsets.all(12.0),
               child: TextField(
                 controller: _controller,
+                onSubmitted: (query) {
+                  viewModel.startSearch(query);
+                },
                 decoration: InputDecoration(
                   hintText: '검색어',
-                  border: OutlineInputBorder(
+                  enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.blueAccent),
+                    borderSide: const BorderSide(color: Colors.blue),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(color: Colors.blue),
                   ),
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -52,22 +60,28 @@ class _PictureListScreenState extends State<PictureListScreen> {
             ),
             Expanded(
               child: viewModel.isLoading
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : GridView.count(
-                      padding: const EdgeInsets.all(24),
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
-                      children: viewModel.pictures
-                          .map((e) => ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Image.network(
-                                e.url,
-                                fit: BoxFit.cover,
-                              )))
-                          .toList()),
+                  ? const PictureListSkeleton()
+                  : viewModel.isEmpty
+                      ? const Center(
+                          child: Text(
+                            '검색결과가 없습니다.',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        )
+                      : GridView.count(
+                          padding: const EdgeInsets.all(24),
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 12,
+                          mainAxisSpacing: 12,
+                          children: viewModel.pictures
+                              .map((e) => ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.network(
+                                    e.url,
+                                    fit: BoxFit.cover,
+                                  )))
+                              .toList(),
+                        ),
             ),
           ],
         ),

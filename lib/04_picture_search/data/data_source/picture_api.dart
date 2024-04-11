@@ -13,13 +13,14 @@ class PictureApi {
   }) : _client = client ?? http.Client();
 
   Future<PictureResultDto> getPictureResultDto(String query) async {
-    print(query);
     final response = await http.get(
         Uri.parse('$_baseUrl$_apiKey&q=$query&image_type=photo&pretty=true'));
 
     if (response.statusCode != 200) {
       throw Exception('네트워크 에러 ${response.statusCode}');
     }
+
+    await Future.delayed(const Duration(seconds: 2));
 
     return PictureResultDto.fromJson(jsonDecode(response.body));
   }
