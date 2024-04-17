@@ -1,12 +1,13 @@
 import 'dart:convert';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:learn_flutter/04_picture_search/data/dto/picture_result_dto.dart';
 
 class PictureApi {
   final http.Client _client;
   final String _baseUrl = 'https://pixabay.com/api/?';
-  final String _apiKey = 'key=43170860-66dd05200f7c3fa131b59ca03';
+  final String _apiKey = dotenv.env['PICTURE_API_KEY']!;
 
   PictureApi({
     http.Client? client,

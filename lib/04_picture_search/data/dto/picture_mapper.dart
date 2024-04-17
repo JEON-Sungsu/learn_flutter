@@ -1,4 +1,4 @@
-import 'package:learn_flutter/04_picture_search/data/model/picture.dart';
+import 'package:learn_flutter/04_picture_search/domain/model/picture.dart';
 
 import 'picture_result_dto.dart';
 

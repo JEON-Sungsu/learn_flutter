@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:learn_flutter/04_picture_search/presentation/component/picture_list_skeleton.dart';
-import 'package:learn_flutter/04_picture_search/presentation/screen/picture_detail_screen.dart';
 import 'package:learn_flutter/04_picture_search/presentation/view_model/picture_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -81,15 +80,8 @@ class _PictureListScreenState extends State<PictureListScreen> {
                         borderRadius: BorderRadius.circular(12),
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  final pictureInfo = viewModel.getPictureInfo(e.id);
-                                  return PictureDetailScreen(picture: pictureInfo);
-                                }
-                              ),
-                            );
+                            final pictureInfo = viewModel.getPictureInfo(e.id);
+                            context.push('/pictureSearch/pictureDetail', extra: pictureInfo);
                           },
                           child: Hero(
                             tag: e.tags,

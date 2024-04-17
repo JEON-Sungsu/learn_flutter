@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
-import 'package:learn_flutter/01_happy_birthday/happy_birthday_list.dart';
-import 'package:learn_flutter/02_youtuebe_clone/presentation/youtube_main.dart';
-import 'package:learn_flutter/03_starbucks_clone/presentation/starbucks_main_screen.dart';
 import 'package:learn_flutter/router/router.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: '.env');
   runApp(const MyApp());
 }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/04_picture_search/data/model/picture.dart';
+import 'package:learn_flutter/04_picture_search/domain/model/picture.dart';
 import 'package:learn_flutter/04_picture_search/presentation/view_model/picture_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -10,10 +10,10 @@ class PictureDetailScreen extends StatefulWidget {
   PictureDetailScreen({super.key, required this.picture});
 
   @override
-  State<PictureDetailScreen> createState() => _StatePictureDetailScreen();
+  State<PictureDetailScreen> createState() => _PictureDetailScreenState();
 }
 
-class _StatePictureDetailScreen extends State<PictureDetailScreen> {
+class _PictureDetailScreenState extends State<PictureDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +23,7 @@ class _StatePictureDetailScreen extends State<PictureDetailScreen> {
             SizedBox(
               width: double.infinity,
               child: Hero(
+                // tag: widget.picture.tags,
                 tag: widget.picture.tags,
                 child: Image.network(
                   widget.picture.url,
