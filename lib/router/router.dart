@@ -1,4 +1,6 @@
 import 'package:go_router/go_router.dart';
+import 'package:learn_flutter/00_UI_practice/ui_components/radio_button.dart';
+import 'package:learn_flutter/00_UI_practice/ui_list.dart';
 import 'package:learn_flutter/01_happy_birthday/happy_birthday_list.dart';
 import 'package:learn_flutter/01_happy_birthday/model/user_card_info.dart';
 import 'package:learn_flutter/01_happy_birthday/pages/birthday_card.dart';
@@ -13,6 +15,7 @@ import 'package:learn_flutter/04_picture_search/domain/use_case/start_search_use
 import 'package:learn_flutter/04_picture_search/presentation/screen/picture_detail_screen.dart';
 import 'package:learn_flutter/04_picture_search/presentation/screen/picture_list_screen.dart';
 import 'package:learn_flutter/04_picture_search/presentation/view_model/picture_view_model.dart';
+import 'package:learn_flutter/core/di/di_setup.dart';
 import 'package:learn_flutter/main.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +26,21 @@ final router = GoRouter(
       path: '/main',
       builder: (context, state) {
         return const MyHomePage(title: '과제 리스트');
+      },
+    ),
+
+    //00_UI_Pracice
+    GoRoute(
+      path: '/uiList',
+      builder: (context, state) {
+        return const UiList();
+      },
+    ),
+
+    GoRoute(
+      path: '/uiList/radioButton',
+      builder: (context, state) {
+        return const RadioButton();
       },
     ),
 
@@ -68,12 +86,7 @@ final router = GoRouter(
       path: '/pictureSearch',
       builder: (context, state) {
         return ChangeNotifierProvider(
-          create: (_) => PictureViewModel(
-            startSearchUseCase: StartSearchUseCase(
-              repository: PictureRepositoryImpl(api: PictureApi()),
-            ),
-            getPictureDetailUseCase: GetPictureDetailUseCase(),
-          ),
+          create: (_) => getIt<PictureViewModel>(),
           child: const PictureListScreen(),
         );
       },

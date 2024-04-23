@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
+import 'package:learn_flutter/core/di/di_setup.dart';
 import 'package:learn_flutter/router/router.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
+  diSetup();
   runApp(const MyApp());
 }
 
@@ -50,6 +52,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView(
           padding: const EdgeInsets.all(8),
           children: <Widget>[
+            TextButton(
+              onPressed: () {
+                context.push(
+                    Uri(path: '/uiList').toString()
+                );
+              },
+              child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: const Text('00. UI Practice')), //03
+            ),
             TextButton(
               onPressed: () {
                 context.push(
