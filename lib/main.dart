@@ -103,6 +103,16 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Container(
                   alignment: Alignment.centerLeft,
                   child: const Text('04. Picture Search')), //03
+            ),
+            TextButton(
+              onPressed: () {
+                context.push(
+                    Uri(path: '/stream').toString()
+                );
+              },
+              child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: const Text('05. Stream')), //03
             )
           ],
         ),

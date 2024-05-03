@@ -15,6 +15,7 @@ import 'package:learn_flutter/04_picture_search/domain/use_case/start_search_use
 import 'package:learn_flutter/04_picture_search/presentation/screen/picture_detail_screen.dart';
 import 'package:learn_flutter/04_picture_search/presentation/screen/picture_list_screen.dart';
 import 'package:learn_flutter/04_picture_search/presentation/view_model/picture_view_model.dart';
+import 'package:learn_flutter/05_stream_practice/presentation/stream_main_screen.dart';
 import 'package:learn_flutter/core/di/di_setup.dart';
 import 'package:learn_flutter/main.dart';
 import 'package:provider/provider.dart';
@@ -97,6 +98,14 @@ final router = GoRouter(
       builder: (context, state) {
         final picture = state.extra as ImagePicture;
         return PictureDetailScreen(picture: picture);
+      },
+    ),
+
+    //05_Stream
+    GoRoute(
+      path: '/stream',
+      builder: (context, state) {
+        return const StreamMainScreen();
       },
     ),
   ],
