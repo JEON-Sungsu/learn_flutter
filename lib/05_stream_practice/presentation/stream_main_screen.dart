@@ -14,6 +14,7 @@ class _StreamMainScreenState extends State<StreamMainScreen> {
         body: Column(
           children: [
             Text('다시한번 Revert test'),
+            Text('2차 머지 진행')
           ],
         )
     );
