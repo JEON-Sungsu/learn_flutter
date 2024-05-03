@@ -10,6 +10,12 @@ class StreamMainScreen extends StatefulWidget {
 class _StreamMainScreenState extends State<StreamMainScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+        body: Column(
+          children: [
+            Text('다시한번 Revert test'),
+          ],
+        )
+    );
   }
 }
